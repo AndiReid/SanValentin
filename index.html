@@ -6,8 +6,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Para Adriana ❤️</title>
   </head>
-  <body>
-    <div id="root"></div>
+<body class="bg-slate-950">
+    <div id="root">
+      <div style="display: flex; justify-content: center; align-items: center; height: 100vh; background-color: #020617; color: #ec4899; flex-direction: column;">
+        <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="animation: pulse 1s infinite;">
+          <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/>
+        </svg>
+        <p style="margin-top: 20px; font-family: sans-serif; opacity: 0.7;">Buscando a Adriana...</p>
+      </div>
+      <style>
+        @keyframes pulse {
+          0% { transform: scale(1); opacity: 1; }
+          50% { transform: scale(1.2); opacity: 0.8; }
+          100% { transform: scale(1); opacity: 1; }
+        }
+      </style>
+    </div>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>

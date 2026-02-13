@@ -3,15 +3,16 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Heart, Stars, Rocket, Puzzle, Ticket } from 'lucide-react';
 import confetti from 'canvas-confetti';
 
-// --- Componente: Tarjeta Bento ---
+// --- Componente: Tarjeta Bento (OPTIMIZADO) ---
+// Se redujo el backdrop-blur y se oscureció el fondo para mejorar rendimiento en móviles
 const BentoCard = ({ icon: Icon, title, desc, delay, color }) => (
   <motion.div
     initial={{ opacity: 0, y: 20 }}
     animate={{ opacity: 1, y: 0 }}
     transition={{ duration: 0.5, delay }}
-    className={`p-6 rounded-2xl bg-white/10 backdrop-blur-md border border-white/10 hover:border-${color}-400/50 transition-all group overflow-hidden relative`}
+    className={`p-6 rounded-2xl bg-slate-900/60 backdrop-blur-sm border border-white/10 hover:border-${color}-400/50 transition-all group overflow-hidden relative`}
   >
-    <div className={`absolute -right-4 -top-4 w-24 h-24 bg-${color}-500/20 rounded-full blur-2xl group-hover:bg-${color}-500/30 transition-all`} />
+    <div className={`absolute -right-4 -top-4 w-24 h-24 bg-${color}-500/10 rounded-full blur-xl group-hover:bg-${color}-500/20 transition-all`} />
     <div className="relative z-10">
       <div className={`w-10 h-10 rounded-lg bg-${color}-500/20 flex items-center justify-center mb-4 text-${color}-300`}>
         <Icon size={20} />
@@ -91,7 +92,6 @@ export default function App() {
     if (!moved) setMoved(true);
 
     // Calcular límites de la ventana para que no se salga
-    // Restamos el ancho aproximado del botón (150px) y el alto (50px)
     const maxX = window.innerWidth - 150; 
     const maxY = window.innerHeight - 100;
 
@@ -131,10 +131,12 @@ export default function App() {
 
   return (
     <div className="min-h-screen bg-slate-950 text-white font-sans selection:bg-pink-500/30 relative overflow-x-hidden">
-      {/* Fondo ambiental */}
+      
+      {/* --- Fondo ambiental OPTIMIZADO (Más ligero para GPU móvil) --- */}
       <div className="fixed inset-0 z-0 pointer-events-none">
-        <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-pink-500/20 rounded-full blur-[120px]" />
-        <div className="absolute bottom-[-10%] right-[-10%] w-[30%] h-[30%] bg-purple-500/20 rounded-full blur-[100px]" />
+        <div className="absolute inset-0 bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950" />
+        <div className="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] bg-pink-500/10 rounded-full blur-[80px]" />
+        <div className="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-purple-500/10 rounded-full blur-[80px]" />
       </div>
 
       <div className="relative z-10 container mx-auto px-4 py-12 md:py-20 flex flex-col items-center justify-center min-h-screen">
@@ -193,7 +195,7 @@ export default function App() {
 
               {/* La Pregunta */}
               <motion.div 
-                className="mt-4 md:mt-8 p-6 md:p-8 w-full bg-white/5 backdrop-blur-xl rounded-3xl border border-white/10 text-center space-y-6 shadow-xl"
+                className="mt-4 md:mt-8 p-6 md:p-8 w-full bg-slate-900/60 backdrop-blur-sm rounded-3xl border border-white/10 text-center space-y-6 shadow-xl"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.8 }}
