@@ -1,0 +1,8 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Opcional: Para asegurar que el fondo negro cubra todo en móviles */
+body {
+  background-color: #020617; /* Slate-950 */
+}
